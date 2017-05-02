@@ -23,7 +23,6 @@ public class LoginPage{
             driver.findElement(By.className("register")).click();
             wait(3);
 
-            System.out.println("CurrentUrl is this............" + driver.getCurrentUrl().toString());
 
             //We are now in the register page
             //if(driver.getCurrentUrl() == "http://localhost:8080/register"){
