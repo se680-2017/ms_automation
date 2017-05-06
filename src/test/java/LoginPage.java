@@ -1,28 +1,25 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Timer;
+import java.util.ArrayList;
 
 /**
  * Created by Eric on 4/20/2017.
  */
 public class LoginPage{
 
-    ChromeDriver driver = new ChromeDriver();
+    private ChromeDriver driver;
+    public LoginPage(ChromeDriver driver1){
+        this.driver = driver1;
+    }
     //WebDriverWait wait = new WebDriverWait(driver, 10);
-    //WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ID")));
 
     //From login page click the register link
     public void registerLink(){
         try{
-            wait(3);
-//            driver.findElementByXPath("/html/body/form/div[2]/label/a").click();
-            driver.findElement(By.className("register")).click();
-            wait(3);
 
+
+            driver.findElement(By.className("register")).click();
 
             //We are now in the register page
             //if(driver.getCurrentUrl() == "http://localhost:8080/register"){
@@ -35,19 +32,24 @@ public class LoginPage{
         }
     }
 
+    //attempts to input invalid credentials until successfully logging in
     public void validateLogin(){
         try{
-            //Attempt bad credentials - ensure no access
-            driver.findElementByXPath("/html/body/form/input[1]").sendKeys("badUser");
-            driver.findElementByXPath("/html/body/form/input[2]").sendKeys("badcred");
-            driver.findElementByXPath("/html/body/form/button").click();
-            wait(3);
-            //Attempt good credentials - ensure no access
-            driver.findElementByXPath("/html/body/form/input[1]").click();
-            driver.findElementByXPath("/html/body/form/input[1]").sendKeys("user1");
-            driver.findElementByXPath("/html/body/form/input[2]").click();
-            driver.findElementByXPath("/html/body/form/input[2]").sendKeys("password");
-            driver.findElementByXPath("/html/body/form/button").click();
+            String displayText = driver.findElementByXPath("/html/body/form/h2").getText();
+            ArrayList arrayList = new ArrayList();
+            arrayList.add("badUsername");
+            arrayList.add("badPassword");
+            arrayList.add("user1");
+            arrayList.add("password");
+
+            int i = 0;
+            while(displayText.contains("Please sign in")){
+                driver.findElementByXPath("/html/body/form/input[1]").sendKeys(arrayList.get(i).toString());
+                driver.findElementByXPath("/html/body/form/input[2]").sendKeys(arrayList.get(i+1).toString());
+                driver.findElementByXPath("/html/body/form/button").click();
+                i++;
+            }
+
         }catch(Exception e){
             System.out.println(e);
         }

@@ -19,14 +19,14 @@ public class MakeSchiftAutomation{
         //From landing page, go to login page
         driver.findElementByXPath("/html/body/h1[2]/p/a[1]").click();
 
-        driver.findElementByXPath("/html/body/form/input[1]").sendKeys("user1");
-        driver.findElementByXPath("/html/body/form/input[2]").sendKeys("password");
-        driver.findElementByXPath("/html/body/form/button").click();
+//        driver.findElementByXPath("/html/body/form/input[1]").sendKeys("user1");
+//        driver.findElementByXPath("/html/body/form/input[2]").sendKeys("password");
+//        driver.findElementByXPath("/html/body/form/button").click();
 
         //Validate Login elements
-        LoginPage login = new LoginPage();
+        LoginPage login = new LoginPage(driver);
         //login.registerLink();
-        //login.validateLogin();
+        login.validateLogin();
 
     }
 }
