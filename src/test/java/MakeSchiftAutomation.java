@@ -1,8 +1,6 @@
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Eric on 4/20/2017.
@@ -17,16 +15,16 @@ public class MakeSchiftAutomation{
         driver.get("http://localhost:8080/");
 
         //From landing page, go to login page
-        driver.findElementByXPath("/html/body/h1[2]/p/a[1]").click();
+        driver.findElementByXPath(XpathHelper.landingPageSignIn).click();
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-//        driver.findElementByXPath("/html/body/form/input[1]").sendKeys("user1");
-//        driver.findElementByXPath("/html/body/form/input[2]").sendKeys("password");
-//        driver.findElementByXPath("/html/body/form/button").click();
+        //Validate Registration elements/page
+        Registration registration = new Registration(driver);
+        registration.validateRegistration();
 
         //Validate Login elements
-        LoginPage login = new LoginPage(driver);
-        //login.registerLink();
-        login.validateLogin();
+        //LoginPage login = new LoginPage(driver);
+        //login.validateLogin();
 
     }
 }
