@@ -22,6 +22,10 @@ public class MakeSchiftAutomation{
         Registration registration = new Registration(driver);
         registration.validateRegistration();
 
+        //Validate Home page
+        HomePage homePage = new HomePage(driver);
+        homePage.validateTabs();
+
         //Validate Login elements
         //LoginPage login = new LoginPage(driver);
         //login.validateLogin();

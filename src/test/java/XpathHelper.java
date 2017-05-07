@@ -1,9 +1,11 @@
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * Created by Eric on 5/5/2017.
  */
 public class XpathHelper{
+
     //Landing Page
     public static final String landingPageSignIn = "/html/body/h1[2]/p/a[1]";
 
@@ -21,4 +23,14 @@ public class XpathHelper{
     public static final String inputFieldRegUsername = "username"; //id
     public static final String inputFieldRegPassword = "password"; //id
     public static final String registerBtn = "submitBtn"; //id
+
+    //Home page
+    public static final String displayStringHome = "//*[@id=\"tab1\"]/h1";
+    public static final String inboxTab = "//*[@id=\"favorites\"]";
+    public static final String fileSentTab = "//*[@id=\"following\"]";
+    public static final String profileTab = "//*[@id=\"stars\"]";
+    public static final String userDropdown = "//*[@id=\"tab1\"]/div/select";
+    public static final String filePicker = "//*[@id=\"tab1\"]/div/button";
+
+
 }

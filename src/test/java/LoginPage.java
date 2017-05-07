@@ -1,10 +1,7 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Eric on 4/20/2017.
@@ -25,7 +22,7 @@ public class LoginPage{
             WebElement inputUsername = driver.findElementByXPath(XpathHelper.inputFieldUsername);
             WebElement inputPassword = driver.findElementByXPath(XpathHelper.inputFieldPassword);
 
-            ArrayList arrayList = new ArrayList();
+            ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("badUsername");
             arrayList.add("badPassword");
             arrayList.add("user1");
