@@ -1,5 +1,5 @@
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,6 +18,15 @@ public class MakeSchiftAutomation{
         driver.findElementByXPath(XpathHelper.landingPageSignIn).click();
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
+        //Validate Login elements
+        LoginPage login = new LoginPage(driver);
+        login.validateLogin();
+
+
+//        driver.findElementByXPath(XpathHelper.inputFieldUsername).sendKeys("user1");
+//        driver.findElementByXPath(XpathHelper.inputFieldPassword).sendKeys("password");
+//        driver.findElementByXPath(XpathHelper.loginSignInBtn).click();
+
         //Validate Registration elements/page
         Registration registration = new Registration(driver);
         registration.validateRegistration();
@@ -25,10 +34,7 @@ public class MakeSchiftAutomation{
         //Validate Home page
         HomePage homePage = new HomePage(driver);
         homePage.validateTabs();
-
-        //Validate Login elements
-        //LoginPage login = new LoginPage(driver);
-        //login.validateLogin();
+        homePage.sendFile();
 
     }
 }

@@ -1,6 +1,5 @@
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.ArrayList;
 
 /**
@@ -13,37 +12,44 @@ public class LoginPage{
         this.driver = driver1;
     }
 
-
-    //attempts to input invalid credentials until successfully logging in
+    //attempts to input invalid credentials/invalid str until successfully logging in
     public void validateLogin(){
         try{
-            String displayText = driver.findElementByXPath(XpathHelper.displayString).getText();
-            WebElement signInBtn = driver.findElementByXPath(XpathHelper.loginSignInBtn);
-            WebElement inputUsername = driver.findElementByXPath(XpathHelper.inputFieldUsername);
-            WebElement inputPassword = driver.findElementByXPath(XpathHelper.inputFieldPassword);
-
             ArrayList<String> arrayList = new ArrayList<String>();
             arrayList.add("badUsername");
             arrayList.add("badPassword");
+            arrayList.add("\" or \"\"=\"");
             arrayList.add("user1");
             arrayList.add("password");
 
-            inputUsername.sendKeys("user1");
-            inputPassword.sendKeys("password");
-            signInBtn.click();
+            for(int i = 0; i < arrayList.size()-1; i++){
+                WebElement inputUsername = driver.findElementByXPath(XpathHelper.inputFieldUsername);
+                WebElement inputPassword = driver.findElementByXPath(XpathHelper.inputFieldPassword);
+                WebElement signInBtn = driver.findElementByXPath(XpathHelper.loginSignInBtn);
 
-//            int i = 0;
-//            while(displayText.contains("Please sign in")){
-//                inputUsername.sendKeys(arrayList.get(i).toString());
-//                inputPassword.sendKeys(arrayList.get(i+1).toString());
-//                signInBtn.click();
-//                i++;
-//            }
+                inputUsername.sendKeys(arrayList.get(i));
+                inputPassword.sendKeys(arrayList.get(i+1));
+                signInBtn.click();
+                Thread.sleep(1000);
+            }
+            String displayTextHome = driver.findElementByXPath(XpathHelper.displayStringHome).getText();
+            if(displayTextHome.contains("Upload and Send a File")){
+                Thread.sleep(2000);
+                WebElement logOutBtn = driver.findElementByXPath(XpathHelper.logOutBtn);
+                logOutBtn.click();
+
+                System.out.println("validateLogin(): Success");
+            }else{
+                throw new Exception("Could not make it to the Home page.");
+            }
 
         }catch(Exception e){
             System.out.println("**validateLogin()** Error: " + e);
+            if(e.getMessage().contains("Could not make it to the Home page.")){
+                driver.get("http://localhost:8080/");
+                driver.findElementByXPath(XpathHelper.landingPageSignIn).click();
+            }
         }
 
     }
-
 }

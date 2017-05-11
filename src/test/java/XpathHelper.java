@@ -25,12 +25,18 @@ public class XpathHelper{
     public static final String registerBtn = "submitBtn"; //id
 
     //Home page
+    public static final String logOutBtn = "//*[@id=\"logout\"]";
     public static final String displayStringHome = "//*[@id=\"tab1\"]/h1";
     public static final String inboxTab = "//*[@id=\"favorites\"]";
     public static final String fileSentTab = "//*[@id=\"following\"]";
     public static final String profileTab = "//*[@id=\"stars\"]";
-    public static final String userDropdown = "//*[@id=\"tab1\"]/div/select";
-    public static final String filePicker = "//*[@id=\"tab1\"]/div/button";
+    public static final String userDropDown = "userDropDown"; //id
+    public static final String timerDropDown = "//*[@id=\"timeDropDown\"]";
+    public static final String fileStackWidget = "//*[@id=\"uploadControls\"]/button";
+
+    //FileStack Window Elements
+    public static final String webImages = "//*[@id=\"ng-app\"]/body/div/div[1]/ng-include[3]/div/nav/ul/li[16]/a";
+    public static final String linkURLOption = "//*[@id=\"ng-app\"]/body/div/div[1]/ng-include[3]/div/nav/ul/li[10]/a";
 
 
 }
